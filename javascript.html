@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Script JavaScript</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Santiago Velez G</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="registro.html">Formulario de Registro</a></li>
+        <li><a href="sobre.html">Sobre mí</a></li>
+        <li><a href="scripts.html">Scripts</a></li>
+      </ul>
+    </nav>
+  </header>
+  <h1>Script JavascriptL</h1>
+  <h1>Resultados</h1>
+
+  <div id="resultadoPalindromo"></div>
+  <div id="resultadoMayor"></div>
+  <div id="resultadoVocales"></div>
+  <div id="resultadoConteoVocales"></div>
+
+  <script>
+  // 1. Detectar si la cadena de entrada es un palíndromo
+function esPalindromo(cadena) {
+  cadena = cadena.toLowerCase().replace(/\s/g, '');
+  var cadenaInvertida = cadena.split('').reverse().join('');
+  return cadena === cadenaInvertida;
+}
+
+// 2. Determinar el número mayor entre dos números
+function obtenerMayor(numero1, numero2) {
+  if (numero1 > numero2) {
+    return numero1;
+  } else if (numero2 > numero1) {
+    return numero2;
+  } else {
+    return "Los números son iguales.";
+  }
+}
+
+// 3. Escribir las vocales que aparecen en una frase
+function obtenerVocales(frase) {
+  var vocales = ['a', 'e', 'i', 'o', 'u'];
+  var vocalesEncontradas = [];
+
+  for (var i = 0; i < frase.length; i++) {
+    var caracter = frase.charAt(i).toLowerCase();
+
+    if (vocales.includes(caracter) && !vocalesEncontradas.includes(caracter)) {
+      vocalesEncontradas.push(caracter);
+    }
+  }
+
+  return vocalesEncontradas;
+}
+
+// 4. Contar la cantidad de veces que aparecen cada vocal en una frase
+function contarVocales(frase) {
+  var vocales = ['a', 'e', 'i', 'o', 'u'];
+  var conteoVocales = {};
+
+  for (var i = 0; i < frase.length; i++) {
+    var caracter = frase.charAt(i).toLowerCase();
+
+    if (vocales.includes(caracter)) {
+      if (conteoVocales[caracter]) {
+        conteoVocales[caracter]++;
+      } else {
+        conteoVocales[caracter] = 1;
+      }
+    }
+  }
+
+  return conteoVocales;
+}
+
+
+// Ejercicio 1: Palíndromo
+var entradaPalindromo = prompt("Ingrese una cadena de texto para validar si es palindromo:");
+var resultadoPalindromo = esPalindromo(entradaPalindromo);
+
+if (resultadoPalindromo) {
+  console.log("La cadena ingresada es un palíndromo.");
+} else {
+  console.log("La cadena ingresada no es un palíndromo.");
+}
+
+// Ejercicio 2: Mayor de dos números
+var numero1 = parseFloat(prompt("Ingrese el primer número:"));
+var numero2 = parseFloat(prompt("Ingrese el segundo número:"));
+var resultadoMayor = obtenerMayor(numero1, numero2);
+console.log("El número mayor es: " + resultadoMayor);
+
+// Ejercicio 3: Vocales en una frase
+var fraseVocales = prompt("Ingrese una frase para saber que vocales contiene:");
+var vocalesEncontradas = obtenerVocales(fraseVocales);
+console.log("Vocales encontradas: " + vocalesEncontradas.join(', '));
+
+// Ejercicio 4: Conteo de vocales
+var fraseConteo = prompt("Ingrese una frase para contar cuantas vocales tiene:");
+var conteoVocales = contarVocales(fraseConteo);
+console.log("Conteo de vocales:");
+for (var vocal in conteoVocales) {
+  console.log(vocal + ": " + conteoVocales[vocal]);
+}
+
+  </script>
+  <script>
+  
+
+    // Mostrar los resultados en los elementos
+    document.getElementById("resultadoPalindromo").textContent = "Palíndromo: " + resultadoPalindromo;
+    document.getElementById("resultadoMayor").textContent = "El número mayor es: " + resultadoMayor;
+    document.getElementById("resultadoVocales").textContent = "Vocales presentes: " + vocalesEncontradas;
+        document.getElementById("resultadoConteoVocales").textContent = "Conteo de vocales: " + JSON.stringify(conteoVocales);
+</script>
+
+ <footer>
+  <p><center>Derechos de autor &copy; 2023 - Santiago Velez Gutierrez</center></p>
+</footer>
+</body>
+</html>

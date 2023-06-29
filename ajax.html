@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Script AJAX</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script>
+    window.onload = function() {
+      document.getElementById("url").value = window.location.href;
+    };
+
+    function cargarContenidos() {
+      var url = document.getElementById("url").value;
+      var xhr = new XMLHttpRequest();
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            document.getElementById("contenidos").textContent = xhr.responseText;
+          } else {
+            document.getElementById("contenidos").textContent = "Error al cargar los contenidos";
+          }
+          document.getElementById("estados").textContent = "Completada";
+          document.getElementById("cabeceras").textContent = xhr.getAllResponseHeaders();
+          document.getElementById("codigo").textContent = "Código de estado: " + xhr.status + " " + xhr.statusText;
+        } else {
+          document.getElementById("estados").textContent = "Cargando...";
+          document.getElementById("cabeceras").textContent = "";
+          document.getElementById("codigo").textContent = "";
+        }
+      };
+
+      xhr.open("GET", url, true);
+      xhr.send();
+    }
+  </script>
+</head>
+<body><header>
+    <h1>Santiago Velez G</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="registro.html">Formulario de Registro</a></li>
+        <li><a href="sobre.html">Sobre mí</a></li>
+        <li><a href="scripts.html">Scripts</a></li>
+      </ul>
+    </nav>
+  </header>
+  <h1>Script de AJAX</h1>
+  <label for="url">URL:</label>
+  <input type="text" id="url" readonly>
+  <br>
+  <button onclick="cargarContenidos()">Mostrar Contenidos</button>
+  <hr>
+  <h2>Estados de la petición:</h2>
+  <div id="estados">No iniciada</div>
+  <hr>
+  <h2>Cabeceras HTTP de la respuesta del servidor:</h2>
+  <pre id="cabeceras"></pre>
+  <hr>
+  <h2>Código de estado:</h2>
+  <div id="codigo"></div>
+  <hr>
+  <h2>Contenidos:</h2>
+  <pre id="contenidos"></pre>
+
+  <footer>
+    <p><center>Derechos de autor &copy; 2023 - Santiago Velez Gutierrez</center></p>
+  </footer>
+</body>
+</html>
